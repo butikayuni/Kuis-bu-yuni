@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Relasi dan Fungsi - Bu Yuni</title>
+<style>
+body{font-family:sans-serif;background:linear-gradient(135deg,#6a11cb,#2575fc);min-height:100vh;margin:0;padding:15px;display:flex;justify-content:center;align-items:center}
+.card{background:white;max-width:600px;width:100%;border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+h1{text-align:center;color:#333} .sub{text-align:center;color:#666;margin-bottom:15px}
+.q{font-weight:700;font-size:18px;margin:15px 0} .opt label{display:block;background:#f5f7ff;border:2px solid #e0e6ff;border-radius:12px;padding:12px;margin-bottom:8px}
+.btn{width:100%;background:#6a11cb;color:white;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;margin-top:10px}
+</style></head>
+<body><div class="card">
+<h1>Kuis Relasi & Fungsi</h1><p class=sub>Kelas 8 - Bu Yuni</p><div id="quiz"></div>
+<button class=btn id="next" onclick="next()">Lanjut</button></div>
+<script>
+const soal=[
+{q:"1. Himpunan {(1,2),(2,3),(3,4)} disebut...",o:["Fungsi","Relasi","Korespondensi","Venn"],k:1},
+{q:"2. Fungsi: setiap anggota A punya...",o:["Tepat satu pasangan di B","Banyak pasangan","Tidak berpasangan","Satu di A"],k:0},
+{q:"3. Banyak fungsi A={1,2,3} ke B={a,b} adalah...",o:["6","8","9","5"],k:1},
+{q:"4. f(x)=2x+3, f(4)=...",o:["8","11","7","10"],k:1},
+{q:"5. f(x)=3x-5, f(a)=10, a=...",o:["5","15","3","10"],k:0},
+{q:"6. Domain {(1,2),(2,4),(3,6)} adalah...",o:["{2,4,6}","{1,2,3}","{1,2,4}","{1}"],k:1},
+{q:"7. Range {(1,5),(2,6),(3,7)} adalah...",o:["{1,2,3}","{5,6,7}","{1,5}","{5}"],k:1},
+{q:"8. Grafik y=x+2 memotong sumbu Y di...",o:["(2,0)","(0,2)","(0,0)","(2,2)"],k:1},
+{q:"9. Korespondensi satu-satu contohnya...",o:["Siswa dg hobi","Negara dg ibukota","Bilangan dg kuadrat","Siswa dg pelajaran"],k:1},
+{q:"10. Range disebut juga...",o:["Daerah asal","Daerah hasil","Daerah kawan","Domain"],k:1}
+];
+let i=0,s=0,j=[];
+function render(){let q=soal[i];document.getElementById('quiz').innerHTML=`<div class=q>${q.q}</div>`+q.o.map((o,k)=>`<div class=opt><label><input type=radio name=o value=${k}> ${String.fromCharCode(65+k)}. ${o}</label></div>`).join('')}
+function next(){let p=document.querySelector("input[name=o]:checked");if(!p)return alert('Pilih dulu Bu!');j[i]=+p.value;if(+p.value==soal[i].k)s++;i++;if(i<soal.length)render();else{let n=s*10;document.querySelector('.card').innerHTML=`<h1 style=text-align:center>Hasil: ${n}</h1><p style=text-align:center>Benar ${s} dari ${soal.length}<br>${n>=80?'Luar biasa!':'Semangat!'}</p><button class=btn onclick=location.reload()>Ulangi</button>`}}
+render();</script></body></html>
